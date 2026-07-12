@@ -22,3 +22,13 @@ graph LR
     MIC[mic] --> SIG
     MIC --> GND[GND]
     SIG -.-> ESP[ESP32-C3 ADC1_CH3]
+```
+
+# Start
+
+Connect your ESP Board to PC, run ARDUINO IDE.
+Change SSID and PASSWORD in code, then run.
+
+Open Serial Monitor with *115200* baudrate, wait while board connecting to Wi-Fi. Then copy *IPAddress* from Serial Monitor and open Frontend in your browser.
+
+### Enjoy!!!
