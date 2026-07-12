@@ -1,36 +1,24 @@
 # ESP32-C3-Supermini-SoundRecording
 Short guide, how to record sound without I2S.
 
-##1. Wiring
+## Connection Tab
 
-***Connection Scheme
+| Mic pins | Esp pins |
+|:---:|:---:|
+| **GND** | `GND` |
+| **SIG** | `GPIO3` |
+| **SIG** | `3.3V` (pull-up with **8k2** resistor)|
 
+## ️!!!!!!!!
 
-## Таблица подключений
+> 8k2 resistor need be connected **between 3.3V и SIG** (parallel to mic), not sequence!  
 
-| Пин микрофона | Пин ESP32-C3 SuperMini | Описание |
-|:---:|:---:|:---|
-| **GND** | `GND` | Земля |
-| **SIG** | `GPIO3` | Сигнал (ADC1_CH3) |
-| **SIG** | `3.3V` | Через резистор **8.2 кОм** (pull-up / поляризация) |
-
-## Компоненты
-
-- 🎤 **Электретный микрофон** (капсюль)
-- 🔲 **Резистор 8.2 кОм** — обеспечивает поляризацию капсюля и задаёт рабочую точку ~1.65В на входе АЦП
-- 🔌 **ESP32-C3 SuperMini**
-
-## ️ Важно
-
-> Резистор 8.2 кОм подключается **между 3.3V и SIG** (параллельно микрофону), а не последовательно!  
-> Он создаёт делитель напряжения вместе с внутренним сопротивлением капсюля, обеспечивая смещение сигнала в середину диапазона АЦП (0–3.3В → ~1.65В).
-
-## Mermaid-схема
+## Mermaid-scheme
 
 ```mermaid
 graph LR
-    VCC[3.3V] --> R[Резистор 8.2 кОм]
+    VCC[3.3V] --> R[8k2 resistor]
     R --> SIG[SIG / GPIO3]
-    MIC[Микрофон] --> SIG
+    MIC[mic] --> SIG
     MIC --> GND[GND]
     SIG -.-> ESP[ESP32-C3 ADC1_CH3]
